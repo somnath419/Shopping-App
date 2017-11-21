@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/holobright"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <FrameLayout
+        android:id="@+id/Frame"
+        android:layout_below="@id/appbar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="#fff">
+
+        <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+            android:id="@+id/rel">
+
+
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:layout_marginLeft="110dp"
+        android:text="Please Enter your email to Login/SignUp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView4"
+        android:text="On SomKart"
+        />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_marginLeft="10dp"
+           android:background="@drawable/stylelses"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter email"
+        android:layout_marginTop="41dp"
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/textView"
+       />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@color/holobright"
+        android:text="Continue"
+        android:layout_below="@+id/editText3"
+        />
+
+            <ProgressBar
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/progressSign"
+                android:layout_below="@id/button"
+                android:layout_centerInParent="true"/>
+
+
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+    </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorAccent">@android:color/background_dark</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="colorPrimary">@color/holobright</item>
+        <item name="colorPrimaryDark">@android:color/background_dark</item>
+        <item name="android:colorBackground">@android:color/background_light</item>
+        <item name="android:textColorPrimaryInverse">@android:color/background_dark</item>
+        <item name="android:windowBackground">?attr/editTextColor</item>
+        <item name="android:statusBarColor">@android:color/background_light</item>
+        <item name="android:navigationBarColor">@color/holobright</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@android:color/background_dark</item>
+        <item name="colorPrimary">@android:color/background_dark</item>
+        <item name="colorAccent">@android:color/background_dark</item>
+        <item name="android:statusBarColor">@color/holobright</item>
+
+    </style>
+
+
+
+
+    <style name="AppTheme2" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme3" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme_Dark_Dialog" parent="Theme.AppCompat.Light.Dialog.Alert" />
+
+</resources>

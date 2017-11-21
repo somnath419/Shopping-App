@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/loginview"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="Welcome Back!"
+        android:typeface="serif"/>
+
+    <RelativeLayout android:id="@+id/boxlogin"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/textView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stylelses"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:hint="Email Address"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:background="@drawable/stylelses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/holobright"
+        android:text="Login"
+        android:layout_below="@+id/boxlogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/button5"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin"/>
+
+
+
+</RelativeLayout>

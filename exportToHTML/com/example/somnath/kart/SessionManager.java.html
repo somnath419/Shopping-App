@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>SessionManager.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+SessionManager.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.somnath.kart; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Context; 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.content.SharedPreferences; 
+</span><span class="s0">import </span><span class="s1">java.util.HashMap; 
+ 
+</span><span class="s2">/** 
+ * Created by SOMNATH on 22-09-2017. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">SessionManager { 
+    </span><span class="s2">// Shared Preferences</span><span class="s1"> 
+    SharedPreferences pref; 
+    </span><span class="s2">// Editor for Shared preferences</span><span class="s1"> 
+    SharedPreferences.Editor editor; 
+    </span><span class="s2">// Context</span><span class="s1"> 
+    Context _context; 
+    </span><span class="s2">// Shared pref mode</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">PRIVATE_MODE = </span><span class="s3">0</span><span class="s1">; 
+    </span><span class="s2">// Sharedpref file name</span><span class="s1"> 
+    </span><span class="s0">private static final </span><span class="s1">String PREF_NAME = </span><span class="s4">&quot;Pref&quot;</span><span class="s1">; 
+    </span><span class="s2">// All Shared Preferences Keys</span><span class="s1"> 
+    </span><span class="s0">private static final </span><span class="s1">String IS_LOGIN = </span><span class="s4">&quot;IsLoggedIn&quot;</span><span class="s1">; 
+    </span><span class="s2">// User name (make variable public to access from outside)</span><span class="s1"> 
+    </span><span class="s0">public static final </span><span class="s1">String KEY_NAME = </span><span class="s4">&quot;name&quot;</span><span class="s1">; 
+    </span><span class="s2">// Email address (make variable public to access from outside)</span><span class="s1"> 
+    </span><span class="s0">public static final </span><span class="s1">String KEY_EMAIL = </span><span class="s4">&quot;email&quot;</span><span class="s1">; 
+    </span><span class="s2">// Constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">SessionManager(Context context){ 
+        </span><span class="s0">this</span><span class="s1">._context = context; 
+        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE); 
+        editor = pref.edit(); 
+    } 
+    </span><span class="s2">/** 
+     * Create login session 
+     * */</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">createLoginSession(String name, String email){ 
+        </span><span class="s2">// Storing login value as TRUE</span><span class="s1"> 
+        editor.putBoolean(IS_LOGIN, </span><span class="s0">true</span><span class="s1">); 
+        </span><span class="s2">// Storing name in pref</span><span class="s1"> 
+        editor.putString(KEY_NAME, name); 
+        </span><span class="s2">// Storing email in pref</span><span class="s1"> 
+        editor.putString(KEY_EMAIL, email); 
+        </span><span class="s2">// commit changes</span><span class="s1"> 
+        editor.commit(); 
+    } 
+    </span><span class="s2">/** 
+     * Check login method wil check user login status 
+     * If false it will redirect user to login page 
+     * Else won't do anything 
+     * */</span><span class="s1"> 
+    </span><span class="s0">public boolean </span><span class="s1">checkLogin(){ 
+        </span><span class="s2">// Check login status</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(!</span><span class="s0">this</span><span class="s1">.isLoggedIn()){ 
+            </span><span class="s0">return false</span><span class="s1">; 
+        } 
+           </span><span class="s0">return  true</span><span class="s1">; 
+    } 
+    </span><span class="s2">/** 
+     * Get stored session data 
+     * */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">HashMap&lt;String, String&gt; getUserDetails(){ 
+        HashMap&lt;String, String&gt; user = </span><span class="s0">new </span><span class="s1">HashMap&lt;String, String&gt;(); 
+        </span><span class="s2">// user name</span><span class="s1"> 
+        user.put(KEY_NAME, pref.getString(KEY_NAME, </span><span class="s0">null</span><span class="s1">)); 
+ 
+        </span><span class="s2">// user email id</span><span class="s1"> 
+        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL,</span><span class="s0">null</span><span class="s1">)); 
+ 
+        </span><span class="s2">// return user</span><span class="s1"> 
+        </span><span class="s0">return </span><span class="s1">user; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * Clear session details 
+     * */</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">logoutUser(){ 
+        </span><span class="s2">// Clearing all data from Shared Preferences</span><span class="s1"> 
+        editor.clear(); 
+        editor.commit(); 
+ 
+    } 
+    </span><span class="s2">/** 
+     * Quick check for login 
+     * **/</span><span class="s1"> 
+    </span><span class="s2">// Get Login State</span><span class="s1"> 
+    </span><span class="s0">public boolean </span><span class="s1">isLoggedIn(){ 
+        </span><span class="s0">return </span><span class="s1">pref.getBoolean(IS_LOGIN, </span><span class="s0">false</span><span class="s1">); 
+    } 
+}</span></pre>
+</body>
+</html>

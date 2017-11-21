@@ -1,0 +1,103 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollbars="vertical"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:fillViewport="true">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/relativehome">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_height="200dp">
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/layoutDots"
+        android:layout_width="match_parent"
+        android:layout_height="12sp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".5"
+        android:background="@android:color/white" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:id="@+id/view1"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
+    <ProgressBar
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/progresshome"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView android:id="@+id/hotdeals"
+        android:textSize="20sp"
+        android:paddingLeft="16sp"
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/homerecycler1"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        >
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:id="@+id/view2"
+        android:background="@color/white" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/homerecycler2"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

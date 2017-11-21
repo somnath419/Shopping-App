@@ -29,7 +29,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;

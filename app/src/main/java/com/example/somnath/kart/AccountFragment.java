@@ -47,7 +47,7 @@ public class AccountFragment extends Fragment {
 
         ArrayAdapter<String> adpater,adpater2;
 
-        List<String> list= new ArrayList<String>();
+        ArrayList<String> list= new ArrayList<String>();
         list.add("About Me");
         list.add("Need Help");
         list.add("Settings");
@@ -55,6 +55,8 @@ public class AccountFragment extends Fragment {
         adpater=new ArrayAdapter<String> (v.getContext(),android.R.layout.simple_list_item_1,list);
         ListView listView=(ListView) v.findViewById(R.id.listviewacc);
         listView.setAdapter(adpater);
+
+
         RelativeLayout relativeLayout=(RelativeLayout) v.findViewById(R.id.login);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +68,6 @@ public class AccountFragment extends Fragment {
         });
 
 
-
         return v;
     }
     @Override
@@ -74,7 +75,13 @@ public class AccountFragment extends Fragment {
         super.onResume();
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle("Account");
+       try{ actionBar.setTitle("Account");
+
+       }
+       catch (Exception e)
+       {
+           e.printStackTrace();
+       }
     }
 
 

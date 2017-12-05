@@ -1,7 +1,9 @@
 package com.example.somnath.kart.product_category;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import com.example.somnath.kart.SessionManager;
 
 public class Women extends Fragment {
     GridView grid;
+    private Context context;
     String[] web = {
           "Its different",
             "Its too ",
@@ -59,8 +62,9 @@ public class Women extends Fragment {
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
+        context=getContext();
 
         View v = inflater.inflate(R.layout.gridlayout, container, false);
         CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
@@ -71,7 +75,7 @@ public class Women extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
+   Toast.makeText(context,"Hello",Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -25,10 +25,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.example.somnath.kart.utils.About_Me;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -64,6 +69,17 @@ public class AccountFragment extends Fragment {
 
                Intent intent= new Intent(view.getContext(),SignUporLoginActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0)
+                {
+                    Toast.makeText(getContext(),"1",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

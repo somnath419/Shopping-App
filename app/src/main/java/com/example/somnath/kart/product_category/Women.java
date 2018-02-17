@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import com.example.somnath.kart.adapters.CustomGrid;
@@ -67,21 +68,22 @@ public class Women extends Fragment {
         context=getContext();
 
         View v = inflater.inflate(R.layout.gridlayout, container, false);
-        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
-        grid = (GridView) v.findViewById(R.id.grid);
+        CustomGrid adapter = new CustomGrid(context, web, imageId);
+        grid = (GridView) v.findViewById(R.id.grid00);
         grid.setAdapter(adapter);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        setGridViewHeightBasedOnChildren(grid,2);
 
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-   Toast.makeText(context,"Hello",Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context, "Hej", Toast.LENGTH_SHORT).show();
             }
         });
 
         return v;
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -90,4 +92,31 @@ public class Women extends Fragment {
         actionBar.setTitle("Women Fashion");
     }
 
+    public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
+        ListAdapter listAdapter = gridView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        int items = listAdapter.getCount();
+        int rows = 0;
+
+        View listItem = listAdapter.getView(0, null, gridView);
+        listItem.measure(0, 0);
+        totalHeight = listItem.getMeasuredHeight();
+
+        float x = 1;
+        if( items > columns ){
+            x = items/columns;
+            rows = (int) (x + 1);
+            totalHeight *= rows;
+        }
+
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.height = totalHeight;
+        gridView.setLayoutParams(params);
+
+    }
 }

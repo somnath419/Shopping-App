@@ -37,8 +37,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
             </intent-filter>
         </activity>
 
@@ -51,13 +49,17 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
             </intent-filter>
+        </activity>
+
+        <activity android:name=".utils.About_Me"
+            android:label="About Me">
+
         </activity>
 
 
         <service android:name=".WebRequestService"/>
+
         <receiver android:name=".CategoryFragment$WebRequestReceiver">
 
             </receiver>

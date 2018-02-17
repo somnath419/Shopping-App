@@ -11,13 +11,5 @@ import android.net.NetworkInfo;
 
 
 public class CheckNetwork extends Activity{
-    public boolean isNetworkAvailable() {
-        ConnectivityManager cm = (ConnectivityManager)
-               this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return true;
-        }
-        return false;
-    }
+
 }

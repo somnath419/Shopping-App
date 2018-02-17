@@ -145,16 +145,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
 
 
         }
-              else
-              if(st=="home")
-              {
 
-
-              }
-              else
-              {
-
-              }
     }
 
 

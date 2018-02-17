@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.LoginFilter;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.somnath.kart.utils.Check_Functions;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -42,6 +46,7 @@ public class LoginFragment extends Fragment {
     private EditText email, password;
     private TextView article;
     private ProgressBar spinner;
+    private Context context;
 
 
     private Check2 check2;
@@ -56,8 +61,8 @@ public class LoginFragment extends Fragment {
         email = (EditText) v.findViewById(R.id.editText);
         password = (EditText) v.findViewById(R.id.editText2);
         Button button = (Button) v.findViewById(R.id.button5);
-
         spinner=(ProgressBar)v.findViewById(R.id.spin);
+        context=getContext();
 
        spinner.setVisibility(View.GONE);
 
@@ -66,6 +71,29 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 String emailcheck = email.getText().toString();
                 String passwordcheck = password.getText().toString();
+
+                if (TextUtils.isEmpty(passwordcheck)) {
+                    Toast.makeText(context, "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(emailcheck)) {
+                    Toast.makeText(context, "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (!new Check_Functions().isValidEmail(emailcheck)) {
+                    email.setError("Invalid Email");
+                    return;
+                }
+
+                if (!new Check_Functions().isValidPassword(passwordcheck)) {
+                    password.setError("Password length should be greater than 6");
+                    return;
+                }
+
+
+
                 check2=new Check2(view.getContext());
                 check2.execute(emailcheck, passwordcheck);
                 i++;

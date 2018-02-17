@@ -157,7 +157,7 @@ public class CategoryFragment extends Fragment {
     @Override
     public  void onPause()
     { super.onPause();
-    getActivity().unregisterReceiver(receiver);
+         getActivity().unregisterReceiver(receiver);
     }
     @Override
     public  void onDestroy()
@@ -172,10 +172,10 @@ public class CategoryFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             String reponseMessage = intent.getStringExtra(WebRequestService.RESPONSE_MESSAGE);
    if(reponseMessage!=null){
-            try { textView=(TextView) getView().findViewById(R.id.fashion);
-                textView2=(TextView) getView().findViewById(R.id.electronics);
-                textView3=(TextView) getView().findViewById(R.id.home);
-                textView4=(TextView) getView().findViewById(R.id.daily);
+            try {   textView=(TextView) getView().findViewById(R.id.fashion);
+                    textView2=(TextView) getView().findViewById(R.id.electronics);
+                    textView3=(TextView) getView().findViewById(R.id.home);
+                    textView4=(TextView) getView().findViewById(R.id.daily);
 
                 if(isNetworkAvailable())
                 {    loadIntoListView(reponseMessage);
@@ -187,14 +187,13 @@ public class CategoryFragment extends Fragment {
                 }
                 else
                  {
-                     textView2.setText("Kindly switch on Your data Bhikhari Jio bh nh h kya");
+                     textView2.setText("Kindly switch on Your data");
                      spinner.setVisibility(View.GONE);
                  }
                }
             catch (JSONException e)
             {
                 e.printStackTrace();
-                Toast.makeText(getContext(), "Check Your internet connection", Toast.LENGTH_SHORT).show();
 
 
             }

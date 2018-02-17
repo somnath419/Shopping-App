@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onResume() {
+
         super.onResume();
 
         IntentFilter filter = new IntentFilter(HomeFragment.WebRequestReceiver2.PROCESS_RESPONSE2);
@@ -103,6 +104,7 @@ public class HomeFragment extends Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setTitle("SomKart");
+
     }
 
     @Override
@@ -112,6 +114,7 @@ public class HomeFragment extends Fragment {
     }
 
     public class WebRequestReceiver2 extends BroadcastReceiver {
+
         public static final String PROCESS_RESPONSE2 = "package com.example.somnath.kart.intent.action.PROCESS_RESPONSE2";
 
         @Override
@@ -167,8 +170,6 @@ public class HomeFragment extends Fragment {
                         viewPager.setAdapter(slidingImageAdapter);
 
 
-
-
                         recyclerView1= (RecyclerView) getView().findViewById(R.id.homerecycler1);
                         recyclerView2 = (RecyclerView) getView().findViewById(R.id.homerecycler2);
 
@@ -193,7 +194,7 @@ public class HomeFragment extends Fragment {
                     }
                     else
                         {
-                            textView2.setText("Kindly switch on Your data Bhikhari Jio bh nh h kya");
+                            textView2.setText("Kindly switch on Your data");
                             progressBar.setVisibility(View.GONE);
 
                         }
@@ -201,7 +202,7 @@ public class HomeFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                Toast.makeText(getContext(), "Check Your internet connection", Toast.LENGTH_SHORT).show();
+
 
             }
         }

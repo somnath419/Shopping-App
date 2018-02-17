@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.somnath.kart.utils.Check_Functions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +45,8 @@ public class RegisterFragment extends Fragment{
     private EditText etFullName, etPassword, city, address,etEmail,contact;
     private ProgressBar progress;
     private SignUpActivity signUpActivity;
-   int i=0;
+    private Context context;
+    int i=0;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
@@ -57,17 +61,60 @@ public class RegisterFragment extends Fragment{
         progress=(ProgressBar) v.findViewById(R.id.progressreg);
         progress.setVisibility(View.GONE);
 
+        context=getContext();
+
 
         Button button=(Button) v.findViewById(R.id.btnSignup);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 String fullName = etFullName.getText().toString();
                 String email=etEmail.getText().toString();
                 String passWord = etPassword.getText().toString();
                 String phoneNumber = contact.getText().toString();
                 String cities = city.getText().toString();
                 String addresss=address.getText().toString();
+
+                if (TextUtils.isEmpty(fullName)) {
+                    Toast.makeText(context, "Enter Your Full Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(context, "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(passWord)) {
+                    Toast.makeText(context, "Enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    Toast.makeText(context, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(cities)) {
+                    Toast.makeText(context, "Enter your city Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(addresss)) {
+                    Toast.makeText(context, "Enter your address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!new Check_Functions().isValidEmail(email)) {
+                    etEmail.setError("Invalid Email");
+                    return;
+                }
+
+                if (!new Check_Functions().isValidPassword(passWord)) {
+                    etPassword.setError("Password length should be greater than 6");
+                    return;
+                }
+
+
+
                 signUpActivity=new SignUpActivity(view.getContext());
                 signUpActivity.execute(fullName,email, passWord, phoneNumber,cities,addresss);
                 i++;

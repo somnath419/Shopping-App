@@ -50,22 +50,19 @@
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login"
-            android:orientation="vertical" >
+
             <ListView
-                android:layout_height="wrap_content"
+                android:layout_height="400sp"
                 android:layout_width="match_parent"
                 android:id="@+id/listviewacc"
+                android:layout_below="@id/login"
                 android:background="@color/white"
                 android:dividerHeight="1.0sp"/>
 
 
 
 
-        </LinearLayout>
+
 
 
 </RelativeLayout>

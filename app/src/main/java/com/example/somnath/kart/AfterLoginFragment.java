@@ -64,18 +64,20 @@ public class AfterLoginFragment  extends Fragment {
             list.add("About Me");
             list.add("Log Out");
             adpater2=new ArrayAdapter<String> (v.getContext(),android.R.layout.simple_list_item_1,list);
+
             ListView listView2=(ListView) v.findViewById(R.id.secondlistw);
             listView2.setAdapter(adpater2);
-        setListViewHeightBasedOnChildren(listView);
-        setListViewHeightBasedOnChildren(listView2);
 
-        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            setListViewHeightBasedOnChildren(listView);
+            setListViewHeightBasedOnChildren(listView2);
+
+             listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id)
             {switch(position)
-                {case 0:
-                    break;
+                {   case 0:
+                        break;
                     case 1:
                         break;
                     case 2:

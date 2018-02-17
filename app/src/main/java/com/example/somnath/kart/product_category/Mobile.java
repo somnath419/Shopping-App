@@ -64,8 +64,10 @@ public class Mobile extends Fragment {
 
         View v = inflater.inflate(R.layout.gridlayout, container, false);
         CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
-        grid = (GridView) v.findViewById(R.id.grid);
+        grid = (GridView) v.findViewById(R.id.grid00);
         grid.setAdapter(adapter);
+
+        new Women().setGridViewHeightBasedOnChildren(grid,2);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

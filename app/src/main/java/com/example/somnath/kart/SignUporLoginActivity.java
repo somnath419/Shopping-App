@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.somnath.kart.adapters.Expandable_adapter;
+import com.example.somnath.kart.utils.Check_Functions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -103,6 +105,17 @@ public class SignUporLoginActivity extends AppCompatActivity{
             public void onClick(View view) {
 
                 String emailcheck = email.getText().toString();
+
+                if (TextUtils.isEmpty(emailcheck)) {
+                    Toast.makeText(SignUporLoginActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!new Check_Functions().isValidEmail(emailcheck)) {
+                    email.setError("Invalid Email");
+                    return;
+                }
+
                 check=new Check(view.getContext());
                 check.execute(emailcheck);
                 i++;

@@ -52,7 +52,8 @@ public class WebRequestService  extends IntentService{
                 out.close();
                 responseMessage = out.toString();
             }
-            else{
+              else
+                {
                 //Closes the connection.
                 Log.w("HTTP1:",statusLine.getReasonPhrase());
                 response.getEntity().getContent().close();

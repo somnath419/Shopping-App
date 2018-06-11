@@ -6,8 +6,6 @@ package com.example.somnath.kart.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.somnath.kart.ItemDetails;
 import com.example.somnath.kart.R;
 import com.example.somnath.kart.product_category.Bags;
@@ -32,9 +28,7 @@ import com.example.somnath.kart.product_category.Mobile_Accessories;
 import com.example.somnath.kart.product_category.Sports;
 import com.example.somnath.kart.product_category.TvAudioVideo;
 import com.example.somnath.kart.product_category.Women;
-import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Callback;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
     private String [] jsonArr;
@@ -48,9 +42,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
           mContext = context;
             mIm=imageid;
             st=string;
-
-
         }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView,mTextView2;
         public RelativeLayout mLinearLayout,mLinearLayout2;
@@ -107,7 +100,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
                    public void onClick(View view) {
                        switch (holder.getAdapterPosition()){
                            case  0:
-                               startFragment(new Men());
+                                mContext.startActivity(new Intent(mContext,Men.class));
                                break;
                            case 1:
                                startFragment(new Women());

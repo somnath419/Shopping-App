@@ -1,5 +1,6 @@
 package com.example.somnath.kart;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,11 +49,14 @@ public class MainActivity extends AppCompatActivity
 {
    public static List<String> listDataHeader;
    public static HashMap<String, List<String>> listDataChild;
+   private Context context;
     int anInt=0,anInt2=0;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context=this;
 
           //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -194,7 +198,8 @@ public class MainActivity extends AppCompatActivity
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int child, long l) {
              if(i==0)
              {  switch (child)
-                  {   case 0:startFragment(new Men());
+                  {   case 0:
+                      startActivity(new Intent(context,Men.class));
                       closeDrawer();
                       break;
                       case 1:startFragment(new Women());
@@ -240,7 +245,6 @@ public class MainActivity extends AppCompatActivity
         switch (getIntent().getStringExtra("Extra"))
         {
             case "men":
-                startFragment(new Men());
                 break;
             case "women":
                 startFragment(new Women());

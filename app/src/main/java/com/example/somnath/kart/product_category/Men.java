@@ -1,96 +1,131 @@
 package com.example.somnath.kart.product_category;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.somnath.kart.adapters.CustomGrid;
+import com.android.volley.Request.Method;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.somnath.kart.R;
-import com.example.somnath.kart.SessionManager;
+import com.example.somnath.kart.adapters.AppController;
+import com.example.somnath.kart.adapters.DataAdapter;
 
-/**
- * Created by SOMNATH on 01-11-2017.
- */
+public class Men extends Activity {
 
-public class Men extends Fragment {
-    GridView grid;
-    String[] web = {
-            "Its different",
-            "Its too ",
-            "And Yet Again",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
+    private String urlJsonArry = "https://improvised-lots.000webhostapp.com/men.php";
+    private static String TAG = Men.class.getSimpleName();
+    private ProgressDialog pDialog;
 
-    };
-    int[] imageId = {
-            R.drawable.image1,
-            R.drawable.image2,
-            R.drawable.image3,
-            R.drawable.image4,
-            R.drawable.image5,
-            R.drawable.image6,
-            R.drawable.image7,
-            R.drawable.image8,
-            R.drawable.image9,
-            R.drawable.image10,
-            R.drawable.image11,
-            R.drawable.image12,
-            R.drawable.image13,
-            R.drawable.image14,
-            R.drawable.image15
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter1;
+    private RecyclerView.LayoutManager mLayoutManager;
 
-    };
+    private Context context;
+    // temporary string to show the parsed response
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.men);
+        context=this;
 
 
-        View v = inflater.inflate(R.layout.gridlayout, container, false);
-        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
-        grid = (GridView) v.findViewById(R.id.grid00);
-        grid.setAdapter(adapter);
 
-        new Women().setGridViewHeightBasedOnChildren(grid,2);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        makeJsonArrayRequest();
+    }
+
+    private void makeJsonArrayRequest() {
+
+        showpDialog();
+
+        JsonArrayRequest req = new JsonArrayRequest(urlJsonArry,
+                new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        try {
+                            String [] img = new String[response.length()];
+                            String [] name=new String [response.length()];
+
+                            // Parsing json array response
+                            // loop through each json object
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject men = (JSONObject) response
+                                        .get(i);
+
+                                name[i]= men.getString("p_name");
+                                img[i]= men.getString("p_img");
+
+                            }
+
+                            mRecyclerView = (RecyclerView) findViewById(R.id.menrecycle);
+                            mLayoutManager = new GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false);
+
+
+                            mRecyclerView.setLayoutManager(mLayoutManager);
+                            mAdapter1 = new DataAdapter(context,name,img, "home");
+                            mRecyclerView.setAdapter(mAdapter1);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                        hidepDialog();
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                if(new SessionManager(getActivity()).checkLogin())
-                    Toast.makeText(getActivity(), "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getActivity(), "You first Login man click on account button", Toast.LENGTH_SHORT).show();
-
-
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                hidepDialog();
             }
         });
 
-        return v;
-
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle("Men");
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
     }
 
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
 }

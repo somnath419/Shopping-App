@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import com.example.somnath.kart.R;
 
-public class CustomGrid extends BaseAdapter{
+public class CustomGrid extends BaseAdapter {
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
 
-    public CustomGrid(Context c,String[] web,int[] Imageid ) {
+    public CustomGrid(Context c, String[] web, int[] Imageid) {
         mContext = c;
         this.Imageid = Imageid;
         this.web = web;
@@ -52,11 +52,11 @@ public class CustomGrid extends BaseAdapter{
         } else {
             grid = (View) convertView;
         }
-        RelativeLayout r=(RelativeLayout) grid.findViewById(R.id.items);
+        RelativeLayout r = (RelativeLayout) grid.findViewById(R.id.items);
         TextView textView = (TextView) grid.findViewById(R.id.grid_text);
-        ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
+        ImageView imageView = (ImageView) grid.findViewById(R.id.grid_image);
 
-        String string= textView.getText().toString();
+        String string = textView.getText().toString();
 
         imageView.setImageResource(Imageid[position]);
         r.setOnClickListener(new View.OnClickListener() {
